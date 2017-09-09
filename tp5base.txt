@@ -1,0 +1,18 @@
+﻿ add !!!!!!!!!!!!!
+TP5怎么隐藏index.php
+ 
+  tp5对URL简化，不做简化情况下我们访问的是localhost/index.php/index/index/index  ,做简化后省去index.php。
+  我们需要找到public下面的.htaccess文件
+  修改成这样
+  
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks
+  RewriteEngine On
+
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*)$ index.php?s=$1 [QSA,PT,L]
+</IfModule>
+
+
+这样就可以直接访问localhost/index/index/index 了
